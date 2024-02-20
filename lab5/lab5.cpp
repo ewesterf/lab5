@@ -2,10 +2,48 @@
 //
 
 #include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+string encode(string input, vector<char> cipher)
+{
+    vector<char> encoded
+}
+
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    vector<char> cipher({ 'V','F','X','B','L','I','T','Z','J','R','P','H','D','K','N','O','W','S','G','U','Y','Q','M','A','C','E' });
+    string input;
+    string output;
+
+    cout << "Input text to encode: ";
+    getline(cin, input);
+    
+    for (char letter : input)
+    {
+        if (letter >= 65 && letter <= 90) //uppercase
+        {
+            output += cipher[letter - 65]; //return letter at slot [-65]
+        }
+        else if (letter >= 97 && letter <= 122) //lowercase
+        {
+            char uppercaseLetter = letter - 32; //convert to uppercase
+            int uppercaseCode = uppercaseLetter - 65; //uppercase code
+            char encodedLetter = cipher[uppercaseCode];
+            output += cipher[uppercaseCode + 32]; //convert to lowercase
+        }
+        else //is not a letter
+        {
+            output += letter;
+        }
+    }
+
+    cout << "Encoded message: " << output;
+
+
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
