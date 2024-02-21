@@ -7,43 +7,43 @@
 
 using namespace std;
 
-string encode(string input, vector<char> cipher)
-{
-    vector<char> encoded
-}
+vector<char> cipher({ 'V','F','X','B','L','I','T','Z','J','R','P','H','D','K','N','O','W','S','G','U','Y','Q','M','A','C','E' });
 
+char encode(char letter)
+{
+    if (letter >= 65 && letter <= 90) //uppercase
+    {
+        return cipher[letter - 65]; //return letter at slot [-65]
+    }
+
+    else if (letter >= 97 && letter <= 122) //lowercase
+    {
+        char uppercase = letter - 32; //convert to uppercase
+        char uppercaseCode = cipher[uppercase - 65]; //uppercase code
+        return uppercaseCode +32; //convert to lowercase
+    }
+
+    else
+    {
+        return letter;
+    }
+}
 
 int main()
 {
-    vector<char> cipher({ 'V','F','X','B','L','I','T','Z','J','R','P','H','D','K','N','O','W','S','G','U','Y','Q','M','A','C','E' });
     string input;
-    string output;
 
     cout << "Input text to encode: ";
     getline(cin, input);
     
-    for (char letter : input)
+    for (char& n : input)
     {
-        if (letter >= 65 && letter <= 90) //uppercase
-        {
-            output += cipher[letter - 65]; //return letter at slot [-65]
-        }
-        else if (letter >= 97 && letter <= 122) //lowercase
-        {
-            char uppercaseLetter = letter - 32; //convert to uppercase
-            int uppercaseCode = uppercaseLetter - 65; //uppercase code
-            char encodedLetter = cipher[uppercaseCode];
-            output += cipher[uppercaseCode + 32]; //convert to lowercase
-        }
-        else //is not a letter
-        {
-            output += letter;
-        }
+        n = encode(n);
     }
 
-    cout << "Encoded message: " << output;
+    cout << "Encoded message: ''" << input << "''";
 
-
+    return 0;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
